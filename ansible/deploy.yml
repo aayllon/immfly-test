@@ -1,0 +1,8 @@
+---
+- name: Deploy Docker Compose project
+  hosts: all
+  become: true
+
+  roles:
+    - dependencies
+    - deployment

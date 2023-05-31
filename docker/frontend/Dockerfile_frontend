@@ -1,0 +1,6 @@
+FROM nginx:1.25.0
+COPY frontend/index.html /usr/share/nginx/html/index.html
+COPY frontend/nginx.conf /etc/nginx/nginx.conf
+COPY frontend/locations.conf /etc/nginx/conf.d/default.conf
+
+

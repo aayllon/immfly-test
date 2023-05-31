@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+  immfly-backend:
+    image: immfly-backend:0.1
+    environment:
+      - EXAMPLE_VARIABLE=""
+    build:
+      context: .
+      dockerfile: backend/Dockerfile_backend
+
+
+  immfly-frontend:
+    image: immfly-frontend:0.1
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile_frontend
+    depends_on:
+      - immfly-backend
+    ports:
+      - 80:80
+

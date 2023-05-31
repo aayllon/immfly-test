@@ -1,0 +1,37 @@
+---
+- name: Refresh cache
+  apt:
+    update_cache: yes
+
+- name: Install Docker dependencies
+  apt:
+    name: "{{packages}}"
+    state: present
+  vars:
+    packages:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - gnupg
+
+- name: Add Docker GPG key
+  apt_key:
+    url: <https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg>
+    state: present
+
+- name: Add Docker APT repository
+  apt_repository:
+    repo: deb [arch={{ ansible_architecture }}] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable
+    state: present
+
+- name: Install Docker Engine
+  apt:
+    name: "{{packages}}"
+    state: present
+  vars:
+    packages:
+      - docker
+      - docker.io
+      - docker-compose
+
