@@ -3,8 +3,6 @@ version: '3.3'
 services:
   immfly-backend:
     image: immfly-backend:0.1
-    environment:
-      - EXAMPLE_VARIABLE=""
     build:
       context: .
       dockerfile: backend/Dockerfile_backend
